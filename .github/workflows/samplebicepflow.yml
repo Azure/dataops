@@ -11,7 +11,6 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-
       # Deploy Bicep file
     - name: deploy
       uses: azure/arm-deploy@v1
