@@ -52,7 +52,7 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         parameters: 'dataFactoryName=${{ github.event.inputs.dataFactoryName }} storageSKU=${{ github.event.inputs.storageSKU }} storageAccountName=${{ github.event.inputs.storageAccountName }} deployStorage=${{ github.event.inputs.deployStorage }} deployADF=${{ github.event.inputs.deployADF }} projectName=${{ github.event.inputs.projectName }} deployprojectName=${{ github.event.inputs.deployprojectName }}'
-        template: ./main.bicep
+        template: infrastructure/main.bicep
         failOnStdErr: false
         
         
