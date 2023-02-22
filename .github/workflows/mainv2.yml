@@ -5,32 +5,32 @@ on:
     inputs:
       dataFactoryName:
         description: 'Azure Data Factory ins'
-        required: true
+        required: True
         default: 'ondemandadf'
       storageAccountName:
         description: 'Storage Name'
-        required: true
+        required: True
         default: 'ondemamdstorage'
       storageSKU:
         description: 'Storage SKU'
-        required: true
+        required: True
         default: 'Standard_LRS'
       projectName:
         description: 'EvenHub Name Space Project Name'
-        required: true
+        required: True
         default: 'bicepeventhubNS'
       deployStorage:
         description: 'bool parameter for storage deployment'
         required: True
-        default: True
+        default: 'True'
       deployADF:
         description: 'bool parameter for ADF deployment'
         required: True
-        default: True
+        default: 'True'
       deployprojectName:
         description: 'bool parameter for Event Hub deployment'
         required: True
-        default: True
+        default: 'True'
       
 jobs:
   build-and-deploy:
