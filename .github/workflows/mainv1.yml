@@ -1,4 +1,4 @@
-name: Power App Parameters
+name: Power App Parameters for BICEP
 
 on:
   workflow_dispatch:
@@ -21,15 +21,15 @@ on:
         default: 'bicepeventhubNS'
       deployStorage:
         description: 'bool parameter for storage deployment'
-        required: true
+        required: True
         default: True
       deployADF:
         description: 'bool parameter for ADF deployment'
-        required: true
+        required: True
         default: True
       deployprojectName:
         description: 'bool parameter for Event Hub deployment'
-        required: true
+        required: True
         default: True
       
 jobs:
