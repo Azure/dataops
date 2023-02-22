@@ -1,0 +1,59 @@
+name: Power App Parameters for BICEP deployemnt
+
+on:
+  workflow_dispatch:
+    inputs:
+      dataFactoryName:
+        description: 'Azure Data Factory ins'
+        required: true
+        default: 'ondemandadf'
+      storageAccountName:
+        description: 'Storage Name'
+        required: true
+        default: 'ondemamdstorage'
+      storageSKU:
+        description: 'Storage SKU'
+        required: true
+        default: 'Standard_LRS'
+      projectName:
+        description: 'EvenHub Name Space Project Name'
+        required: true
+        default: 'bicepeventhubNS'
+      deployStorage:
+        description: 'bool parameter for storage deployment'
+        required: True
+        default: True
+      deployADF:
+        description: 'bool parameter for ADF deployment'
+        required: True
+        default: True
+      deployprojectName:
+        description: 'bool parameter for Event Hub deployment'
+        required: True
+        default: True
+      
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checkout code
+    - uses: actions/checkout@main
+
+      # Log into Azure
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Deploy Bicep files
+    - name: deploy
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        parameters: 'dataFactoryName=${{ github.event.inputs.dataFactoryName }} storageSKU=${{ github.event.inputs.storageSKU }} storageAccountName=${{ github.event.inputs.storageAccountName }} deployStorage=${{ github.event.inputs.deployStorage }} deployADF=${{ github.event.inputs.deployADF }} projectName=${{ github.event.inputs.projectName }} deployprojectName=${{ github.event.inputs.deployprojectName }}'
+        template: infrastructure/main.bicep
+        failOnStdErr: false
+        
+        
+    
